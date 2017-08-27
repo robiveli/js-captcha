@@ -5,7 +5,7 @@
 ### Install ###
 
 ```sh
-npm install jcaptcha
+npm install js-captcha
 ```
 
 ### Usage ###
@@ -37,9 +37,9 @@ jCaptcha can take an optional parameters - an object of key/value settings:
 
 - **el** String *(default:jCaptcha)* - css class for input element
 - **requiredValue** String *(default:\*)* - required filed indicator
-- **resetOnError** Boolean *(default:)* - render new random numbers on error validate
-- **focusOnError** Boolean *(default:)* - focus input field on error validate
-- **clearOnSubmit** Boolean *(default:)* - clear input value on every validate
+- **resetOnError** Boolean *(default:true)* - render new random numbers on error validate
+- **focusOnError** Boolean *(default:true)* - focus input field on error validate
+- **clearOnSubmit** Boolean *(default:true)* - clear input value on every validate
 - **callback** Object *(default:null)* - as invoked function these useful arguments are returned: *response* and *captcha input node*
 
 ### API ###
