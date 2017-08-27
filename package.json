@@ -1,0 +1,34 @@
+{
+  "name": "js-catpcha",
+  "title": "JavaScript Captcha",
+  "description": "JavaScript Captcha plugin with no dependency",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": {
+    "name": "Robert Velickovski",
+    "email": "roby@rvdizajn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/robiveli/js-catpcha.git"
+  },
+  "keywords": [
+    "captcha",
+    "vanilla",
+    "simple",
+    "dependency-free",
+    "lightweight",
+    "javascript"
+  ],
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "grunt": "^1.0.1",
+    "grunt-babel": "^7.0.0",
+    "grunt-contrib-htmlmin": "^2.4.0",
+    "grunt-contrib-uglify": "^3.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-umd": "^2.4.0",
+    "load-grunt-tasks": "^3.5.2"
+  }
+}
