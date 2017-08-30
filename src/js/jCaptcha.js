@@ -30,12 +30,21 @@
 
     }
 
-    function renderEl($captcha, requiredValue) {
+    function setCaptcha($captcha, options, reset) {
 
-        $captcha[0].insertAdjacentHTML('beforebegin', '<div class="jCaptchaText"></div>');
-        this.$jCaptchaText = this.$jCaptchaText || document.getElementsByClassName('jCaptchaText');
+        !reset && $captcha[0].insertAdjacentHTML('beforebegin', '<canvas class="jCaptchaText"></canvas>');
 
-        this.$jCaptchaText[0].textContent = num1 + ' + ' + num2 + ' ' + requiredValue + '';
+        this.$captchaText = this.$captchaText || document.getElementsByClassName('jCaptchaText');
+        this.$jCaptchaTextContext = this.$jCaptchaTextContext || this.$captchaText[0].getContext('2d');
+
+        this.$captchaText[0].width = options.canvasWidth;
+        this.$captchaText[0].height = options.canvasHeight;
+        this.$jCaptchaTextContext.textBaseline = 'top';
+        this.$jCaptchaTextContext.font = '' + options.canvasFontSize + ' ' + options.canvasFontFamily + '';
+        this.$jCaptchaTextContext.textAlign = 'left';
+        this.$jCaptchaTextContext.fillStyle = options.canvasFillStyle;
+
+        this.$jCaptchaTextContext.fillText(num1 + ' + ' + num2 + ' ' + options.requiredValue + '', 0, 0);
 
     }
 
@@ -56,15 +65,21 @@
             resetOnError: true,
             focusOnError: true,
             clearOnSubmit: true,
+            canvasWidth: 50,
+            canvasHeight: 15,
+            canvasFontSize: '15px',
+            canvasFontFamily: 'Arial',
+            canvasFillStyle: '#ddd',
             callback: null
 
         },
 
         init() {
 
-            this.$captcha = document.getElementsByClassName(this.options.el);
+            this.$captchaInput = document.getElementsByClassName(this.options.el);
 
-            this.reset();
+            genereateRandomNum();
+            setCaptcha(this.$captchaInput, this.options);
 
         },
 
@@ -72,18 +87,18 @@
 
             this.callbackReceived = this.callbackReceived || (typeof this.options.callback == 'function');
 
-            if (this.$captcha[0].value != sumNum) {
+            if (this.$captchaInput[0].value != sumNum) {
 
-                this.callbackReceived && this.options.callback('error', this.$captcha);
+                this.callbackReceived && this.options.callback('error', this.$captchaInput);
 
                 (this.options.resetOnError === true) && this.reset();
-                (this.options.focusOnError === true) && this.$captcha[0].focus();
-                (this.options.clearOnSubmit === true) && (this.$captcha[0].value = '');
+                (this.options.focusOnError === true) && this.$captchaInput[0].focus();
+                (this.options.clearOnSubmit === true) && (this.$captchaInput[0].value = '');
 
             } else {
 
-                this.callbackReceived && this.options.callback('success', this.$captcha);
-                (this.options.clearOnSubmit === true) && (this.$captcha[0].value = '');
+                this.callbackReceived && this.options.callback('success', this.$captchaInput);
+                (this.options.clearOnSubmit === true) && (this.$captchaInput[0].value = '');
 
             }
 
@@ -92,7 +107,7 @@
         reset() {
 
             genereateRandomNum();
-            renderEl(this.$captcha, this.options.requiredValue);
+            setCaptcha(this.$captchaInput, this.options, true);
 
         }
 

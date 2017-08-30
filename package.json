@@ -1,8 +1,8 @@
 {
   "name": "js-captcha",
   "title": "JavaScript Captcha",
-  "description": "JavaScript Captcha plugin with no dependency",
-  "version": "1.0.0",
+  "description": "Simple captcha component written in pure JavaScript with no dependencies based on canvas element",
+  "version": "1.1.0",
   "license": "MIT",
   "author": {
     "name": "Robert Velickovski",
