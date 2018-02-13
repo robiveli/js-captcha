@@ -15,6 +15,10 @@ Just include required JavaScript:
 ```sh
 <script src="jCaptcha.js"></script>
 ```
+Set captcha input element:
+```sh
+<input class="jCaptcha" type="text" placeholder="Type in result please">
+```
 
 Initialize it:
 ```sh
