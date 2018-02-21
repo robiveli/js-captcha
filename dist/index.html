@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><title>jCaptcha - Simple captcha component written in pure JavaScript with no dependencies</title><meta charset="utf-8"><meta name="description" content="Simple captcha module written in pure JavaScript with no dependencies..."><meta name="robots" content="index, follow"><meta name="viewport" content="width=device-width,initial-scale=1"><link href="https://fonts.googleapis.com/css?family=Yesteryear" rel="stylesheet"><link href="http://www.rvdizajn.com/jpopup/css/jPopup.css" rel="stylesheet"><script async defer="defer" src="https://buttons.github.io/buttons.js"></script></head><style>/*** DEMO only ***/ 
+<!doctype html><html lang="en"><head><title>jCaptcha - Simple captcha component written in pure JavaScript with no dependencies</title><meta charset="utf-8"><meta name="description" content="Simple captcha module written in pure JavaScript with no dependencies..."><meta name="robots" content="index, follow"><meta name="viewport" content="width=device-width,initial-scale=1"><link href="https://fonts.googleapis.com/css?family=Yesteryear" rel="stylesheet"><link href="https://www.rvdizajn.com/jpopup/css/jPopup.css" rel="stylesheet"><script async defer="defer" src="https://buttons.github.io/buttons.js"></script></head><style>/*** DEMO only ***/
 
     html {
 
@@ -6,10 +6,10 @@
 
     }
 
-    html, body { 
+    html, body {
 
         margin: 0; padding: 0; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; color: #ddd;
-        background-color: #292b2b; text-align: center; 
+        background-color: #292b2b; text-align: center;
     }
 
     header {
@@ -126,7 +126,7 @@
 
     .jPopup .content {
 
-        max-height: 82%; 
+        max-height: 82%;
         text-align: center; color: #292b2b; font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; overflow: auto;
 
     }
@@ -155,7 +155,7 @@
 
         h2 {
 
-            font-size: 60px; 
+            font-size: 60px;
 
         }
 
@@ -186,7 +186,7 @@
 
         .button {
 
-            width: 100px; height: 50px; padding: 16px 0; 
+            width: 100px; height: 50px; padding: 16px 0;
 
         }
 
@@ -196,10 +196,10 @@
 
         }
 
-    }</style><body><header><h1>JavaScript Captcha</h1><h2>jCaptcha</h2><p>Tiny captcha component written in pure JavaScript with no dependencies based on canvas element</p></header><main><form class="form" action=""><input class="jCaptcha" type="text" placeholder="Type in result please"> <button class="button" type="submit">Submit</button></form><a class="codeBtn" role="button">View demo source code</a></main><footer class="btnWrap"><a class="github-button" href="https://github.com/robiveli/js-captcha" data-size="large" aria-label="View on GitHub">View on GitHub</a> <a class="github-button" href="https://github.com/robiveli/js-captcha/archive/master.zip" data-icon="octicon-cloud-download" data-size="large" egaaria-label="Download robiveli/jCaptcha on GitHub">Download</a></footer><script src="js/jCaptcha.min.js"></script><script src="http://www.rvdizajn.com/jpopup/js/jPopup.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script><script>// captcha initial setup
+    }</style><body><header><h1>JavaScript Captcha</h1><h2>jCaptcha</h2><p>Tiny captcha component written in pure JavaScript with no dependencies based on canvas element</p></header><main><form class="form" action=""><input class="jCaptcha" type="text" placeholder="Type in result please"> <button class="button" type="submit">Submit</button></form><a class="codeBtn" role="button">View demo source code</a></main><footer class="btnWrap"><a class="github-button" href="https://github.com/robiveli/js-captcha" data-size="large" aria-label="View on GitHub">View on GitHub</a> <a class="github-button" href="https://github.com/robiveli/js-captcha/archive/master.zip" data-icon="octicon-cloud-download" data-size="large" egaaria-label="Download robiveli/jCaptcha on GitHub">Download</a></footer><script src="js/jCaptcha.min.js"></script><script src="https://www.rvdizajn.com/jpopup/js/jPopup.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script><script>// captcha initial setup
     var myCaptcha = new jCaptcha({
 
-        // set callback function 
+        // set callback function
         callback: function(response, $captchaInputElement) {
 
             if (response == 'success') {
@@ -232,7 +232,7 @@
 
     });
 
-    // popup setup 
+    // popup setup
     document.querySelector('.codeBtn').addEventListener('click', function() {
 
         var jPopupDemo = new jPopup({
