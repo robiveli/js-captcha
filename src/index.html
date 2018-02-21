@@ -13,7 +13,7 @@
 
 <style>
 
-    /*** DEMO only ***/ 
+    /*** DEMO only ***/
 
     html {
 
@@ -21,10 +21,10 @@
 
     }
 
-    html, body { 
+    html, body {
 
         margin: 0; padding: 0; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; color: #ddd;
-        background-color: #292b2b; text-align: center; 
+        background-color: #292b2b; text-align: center;
     }
 
     header {
@@ -141,7 +141,7 @@
 
     .jPopup .content {
 
-        max-height: 82%; 
+        max-height: 82%;
         text-align: center; color: #292b2b; font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; overflow: auto;
 
     }
@@ -170,7 +170,7 @@
 
         h2 {
 
-            font-size: 60px; 
+            font-size: 60px;
 
         }
 
@@ -201,7 +201,7 @@
 
         .button {
 
-            width: 100px; height: 50px; padding: 16px 0; 
+            width: 100px; height: 50px; padding: 16px 0;
 
         }
 
@@ -228,9 +228,9 @@
 </header>
 
 <main>
-    
+
     <form class="form" action="">
-        
+
         <input class="jCaptcha" type="text" placeholder="Type in result please">
         <button class="button" type="submit">Submit</button>
 
@@ -257,7 +257,7 @@
     // captcha initial setup
     var myCaptcha = new jCaptcha({
 
-        // set callback function 
+        // set callback function
         callback: function(response, $captchaInputElement) {
 
             if (response == 'success') {
@@ -290,7 +290,7 @@
 
     });
 
-    // popup setup 
+    // popup setup
     document.querySelector('.codeBtn').addEventListener('click', function() {
 
         var jPopupDemo = new jPopup({
