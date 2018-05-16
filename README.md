@@ -12,23 +12,23 @@ npm install js-captcha
 ### Usage ###
 
 Just include required JavaScript:
-```sh
+```html
 <script src="jCaptcha.js"></script>
 ```
 Set captcha input element:
-```sh
+```html
 <input class="jCaptcha" type="text" placeholder="Type in result please">
 ```
 
 Initialize it:
-```sh
+```html
 <script>
     var myCaptcha = new jCaptcha();
 </script>
 ```
 
 Call `validate()` method when required (e.g. on submit event):
-```sh
+```html
 <script>
     myCaptcha.validate();
 </script>
