@@ -1,5 +1,5 @@
 # JavaScript Captcha #
-### Simple captcha component written in pure JavaScript with no dependencies ###
+### Simple captcha component (2.09 KB) written in pure JavaScript with no dependencies ###
 
 Easy to resolve random math addition rendered within basic canvas element.
 
