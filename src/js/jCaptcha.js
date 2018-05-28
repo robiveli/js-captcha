@@ -1,4 +1,4 @@
-{ 
+{
     'use strict';
 
     function extendDefaults(defaults, options) {
@@ -16,12 +16,12 @@
         });
 
         return defaults;
-            
+
     }
 
     let sumNum, num1, num2;
 
-    function genereateRandomNum() {
+    function generateRandomNum() {
 
         num1 = Math.round(Math.random() * (8)) + 1;
         num2 = Math.round(Math.random() * (8)) + 1;
@@ -78,7 +78,7 @@
 
             this.$captchaInput = document.getElementsByClassName(this.options.el);
 
-            genereateRandomNum();
+            generateRandomNum();
             setCaptcha(this.$captchaInput, this.options);
 
         },
@@ -106,7 +106,7 @@
 
         reset() {
 
-            genereateRandomNum();
+            generateRandomNum();
             setCaptcha(this.$captchaInput, this.options, true);
 
         }

@@ -1,34 +1,39 @@
 # JavaScript Captcha #
-### Simple captcha component (2.09 KB) written in pure JavaScript with no dependencies ###
+### Simple captcha component (2.11 KB) written in pure JavaScript with no dependencies ###
 
 Easy to resolve random math addition rendered within basic canvas element.
 
 ### Install ###
 
-```sh
+```
 npm install js-captcha
 ```
 
 ### Usage ###
 
 Just include required JavaScript:
-```html
+```
 <script src="jCaptcha.js"></script>
 ```
+or
+```
+import jCaptcha from './js-captcha/dist/jCaptcha';
+```
+
 Set captcha input element:
-```html
+```
 <input class="jCaptcha" type="text" placeholder="Type in result please">
 ```
 
 Initialize it:
-```html
+```
 <script>
     var myCaptcha = new jCaptcha();
 </script>
 ```
 
 Call `validate()` method when required (e.g. on submit event):
-```html
+```
 <script>
     myCaptcha.validate();
 </script>
