@@ -79,7 +79,7 @@
             this.$captchaInput = document.getElementsByClassName(this.options.el);
 
             generateRandomNum();
-            setCaptcha(this.$captchaInput, this.options);
+			setCaptcha.call(this, this.$captchaInput, this.options, false);
 
         },
 
@@ -106,8 +106,8 @@
 
         reset() {
 
-            generateRandomNum();
-            setCaptcha(this.$captchaInput, this.options, true);
+			generateRandomNum();
+			setCaptcha.call(this, this.$captchaInput, this.options, true);
 
         }
 

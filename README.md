@@ -65,7 +65,7 @@ jCaptcha can take an optional parameters - an object of key/value settings:
 
 ### Demo ###
 
-Demo available [here](http://www.rvdizajn.com/js-captcha/).
+Demo available [here](https://www.rvdizajn.com/js-captcha/).
 
 ### Browser support ###
 

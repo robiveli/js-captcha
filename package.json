@@ -21,12 +21,14 @@
         "javascript"
     ],
     "devDependencies": {
+        "@babel/core": "^7.1.2",
+        "@babel/preset-env": "^7.1.0",
         "babel-core": "^6.26.0",
         "babel-preset-env": "^1.6.0",
-        "grunt": "^1.0.1",
-        "grunt-babel": "^7.0.0",
-        "grunt-contrib-htmlmin": "^2.4.0",
-        "grunt-contrib-uglify": "^3.0.0",
+        "grunt": "^1.0.3",
+        "grunt-babel": "^8.0.0",
+        "grunt-contrib-htmlmin": "^3.0.0",
+        "grunt-contrib-uglify": "^4.0.0",
         "grunt-contrib-watch": "^1.0.0",
         "grunt-umd": "^3.0.0",
         "load-grunt-tasks": "^4.0.0"
