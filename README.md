@@ -28,7 +28,17 @@ Set captcha input element:
 Initialize it:
 ```
 <script>
-    var myCaptcha = new jCaptcha();
+    var myCaptcha = new jCaptcha({
+        // set callback function for success and error messages:
+        callback: ( response, $captchaInputElement ) => {
+            if ( response == 'success' ) {
+                // success
+            }
+            if ( response == 'error' ) {
+                // error
+            }
+        }
+    });
 </script>
 ```
 
