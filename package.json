@@ -2,7 +2,7 @@
     "name": "js-captcha",
     "title": "JavaScript Captcha",
     "description": "Simple captcha component written in pure JavaScript with no dependencies based on canvas element",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "license": "MIT",
     "author": {
         "name": "Robert Velickovski",
@@ -12,6 +12,7 @@
         "type": "git",
         "url": "https://github.com/robiveli/js-captcha.git"
     },
+    "main": "dist/js/index.js",
     "keywords": [
         "captcha",
         "vanilla",
@@ -21,20 +22,23 @@
         "javascript"
     ],
     "devDependencies": {
-        "@babel/core": "^7.1.2",
-        "@babel/preset-env": "^7.1.0",
-        "babel-core": "^6.26.0",
-        "babel-preset-env": "^1.6.0",
-        "grunt": "^1.0.3",
+        "@babel/core": "^7.7.7",
+        "@babel/preset-env": "^7.7.7",
+        "babel-core": "^6.26.3",
+        "babel-preset-env": "^1.7.0",
+        "grunt": "^1.0.4",
         "grunt-babel": "^8.0.0",
-        "grunt-contrib-htmlmin": "^3.0.0",
-        "grunt-contrib-uglify": "^4.0.0",
-        "grunt-contrib-watch": "^1.0.0",
+        "grunt-contrib-htmlmin": "^3.1.0",
+        "grunt-contrib-uglify": "^4.0.1",
+        "grunt-contrib-watch": "^1.1.0",
         "grunt-umd": "^3.0.0",
-        "load-grunt-tasks": "^4.0.0"
+        "load-grunt-tasks": "^5.1.0"
     },
     "scripts": {
+        "preinstall": "npm install -g npm-check-updates",
         "watch": "grunt watch",
-        "build": "grunt build"
+        "build": "grunt build && ncu",
+        "dependency-check": "ncu",
+        "dependency-update": "ncu -u && npm install && npm audit fix"
     }
 }

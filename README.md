@@ -1,5 +1,5 @@
 # JavaScript Captcha #
-### Simple captcha component (2.11 KB) written in pure JavaScript with no dependencies ###
+### Simple captcha component (~2KB) written in pure JavaScript with no dependencies ###
 
 Easy to resolve random math addition rendered within basic canvas element.
 
@@ -17,7 +17,7 @@ Just include required JavaScript:
 ```
 or
 ```
-import jCaptcha from './js-captcha/dist/jCaptcha';
+import jCaptcha from 'jCaptcha';
 ```
 
 Set captcha input element:

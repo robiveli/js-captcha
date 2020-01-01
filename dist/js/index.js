@@ -18,25 +18,23 @@
 "use strict";
 
 {
-  var extendDefaults = function extendDefaults(defaults, options) {
-    if (typeof NodeList.prototype.forEach !== 'function') {
-      NodeList.prototype.forEach = Array.prototype.forEach;
-    }
-
-    Object.keys(options).forEach(function (keys) {
-      defaults[keys] = options[keys];
-    });
-    return defaults;
-  };
-
   var generateRandomNum = function generateRandomNum() {
     num1 = Math.round(Math.random() * 8) + 1;
     num2 = Math.round(Math.random() * 8) + 1;
     sumNum = num1 + num2;
   };
+  /**
+   * @param {Object}
+   * @param {Object}
+   * @param {Boolean}
+  */
+
 
   var setCaptcha = function setCaptcha($captcha, options, reset) {
-    !reset && $captcha[0].insertAdjacentHTML('beforebegin', '<canvas class="jCaptchaText"></canvas>');
+    if (!reset) {
+      $captcha[0].insertAdjacentHTML('beforebegin', '<canvas class="jCaptchaText"></canvas>');
+    }
+
     this.$captchaText = this.$captchaText || document.getElementsByClassName('jCaptchaText');
     this.$jCaptchaTextContext = this.$jCaptchaTextContext || this.$captchaText[0].getContext('2d');
     this.$captchaText[0].width = options.canvasWidth;
@@ -47,31 +45,35 @@
     this.$jCaptchaTextContext.fillStyle = options.canvasFillStyle;
     this.$jCaptchaTextContext.fillText(num1 + ' + ' + num2 + ' ' + options.requiredValue + '', 0, 0);
   };
+  /**
+   * @param {Object}
+  */
 
-  'use strict';
 
+  var defaults = {
+    el: 'jCaptcha',
+    requiredValue: '*',
+    resetOnError: true,
+    focusOnError: true,
+    clearOnSubmit: true,
+    canvasWidth: 50,
+    canvasHeight: 15,
+    canvasFontSize: '15px',
+    canvasFontFamily: 'Arial',
+    canvasFillStyle: '#ddd',
+    callback: null
+  };
   var sumNum, num1, num2;
 
-  var jCaptcha = function jCaptcha(options) {
-    this.options = options ? extendDefaults(this.options, options) : this.options;
-    this.init();
+  var jCaptcha = function jCaptcha() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    jCaptcha.prototype.options = Object.assign({}, defaults, options);
+
+    jCaptcha.prototype._init();
   };
 
   jCaptcha.prototype = {
-    options: {
-      el: 'jCaptcha',
-      requiredValue: '*',
-      resetOnError: true,
-      focusOnError: true,
-      clearOnSubmit: true,
-      canvasWidth: 50,
-      canvasHeight: 15,
-      canvasFontSize: '15px',
-      canvasFontFamily: 'Arial',
-      canvasFillStyle: '#ddd',
-      callback: null
-    },
-    init: function init() {
+    _init: function _init() {
       this.$captchaInput = document.getElementsByClassName(this.options.el);
       generateRandomNum();
       setCaptcha.call(this, this.$captchaInput, this.options, false);

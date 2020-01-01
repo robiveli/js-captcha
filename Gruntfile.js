@@ -5,14 +5,14 @@ module.exports = function(grunt) {
         settings: {
             srcPath: 'src/',
             distPath: 'dist/',
-            library: 'jCaptcha'
+            fileName: 'index'
         },
 
         babel: {
             dist: {
                 files: {
-                    '<%= settings.distPath %>js/<%= settings.library %>.js': [
-                        '<%= settings.srcPath %>js/<%= settings.library %>.js'
+                    '<%= settings.distPath %>js/<%= settings.fileName %>.js': [
+                        '<%= settings.srcPath %>js/<%= settings.fileName %>.js'
                     ]
                 }
             }
@@ -24,8 +24,8 @@ module.exports = function(grunt) {
                     beautify: false
                 },
                 files: {
-                    '<%= settings.distPath %>js/<%= settings.library %>.min.js': [
-                        '<%= settings.distPath %>js/<%= settings.library %>.js'
+                    '<%= settings.distPath %>js/<%= settings.fileName %>.min.js': [
+                        '<%= settings.distPath %>js/<%= settings.fileName %>.js'
                     ]
                 }
             }
@@ -34,8 +34,8 @@ module.exports = function(grunt) {
         umd: {
             all: {
                 options: {
-                    src: '<%= settings.distPath %>js/<%= settings.library %>.js',
-                    dest: '<%= settings.distPath %>js/<%= settings.library %>.js',
+                    src: '<%= settings.distPath %>js/<%= settings.fileName %>.js',
+                    dest: '<%= settings.distPath %>js/<%= settings.fileName %>.js',
                     objectToExport: 'jCaptcha',
                 }
             }

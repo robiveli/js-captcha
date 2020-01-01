@@ -4,7 +4,7 @@
             "targets": {
             "browsers": [
                 "last 5 versions",
-                "Explorer >= 9"
+                "Explorer >= 10"
                 ]
             }
         }]
