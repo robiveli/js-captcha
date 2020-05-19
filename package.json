@@ -22,11 +22,11 @@
         "javascript"
     ],
     "devDependencies": {
-        "@babel/core": "^7.7.7",
-        "@babel/preset-env": "^7.7.7",
+        "@babel/core": "^7.9.6",
+        "@babel/preset-env": "^7.9.6",
         "babel-core": "^6.26.3",
         "babel-preset-env": "^1.7.0",
-        "grunt": "^1.0.4",
+        "grunt": "^1.1.0",
         "grunt-babel": "^8.0.0",
         "grunt-contrib-htmlmin": "^3.1.0",
         "grunt-contrib-uglify": "^4.0.1",
