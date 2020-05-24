@@ -1,301 +1,372 @@
 <!doctype html>
 <html lang='en'>
+
 <head>
-<title>jCaptcha - Simple captcha component written in pure JavaScript with no dependencies</title>
-<meta charset='utf-8'>
-<meta name='description' content='Simple captcha module written in pure JavaScript with no dependencies...'>
-<meta name='robots' content='index, follow'>
-<meta name='viewport' content='width=device-width, initial-scale=1'>
-<link href="https://fonts.googleapis.com/css?family=Yesteryear" rel="stylesheet">
-<link href="https://www.rvdizajn.com/jpopup/css/jPopup.css" rel="stylesheet">
-<script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>jCaptcha - Simple captcha component written in pure JavaScript with no dependencies</title>
+    <meta charset='utf-8'>
+    <meta name='description' content='Simple captcha module written in pure JavaScript with no dependencies...'>
+    <meta name='robots' content='index, follow'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="https://fonts.googleapis.com/css?family=Yesteryear" rel="stylesheet">
+    <link href="https://www.rvdizajn.com/jpopup/css/jPopup.css" rel="stylesheet">
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
 
 <style>
-
     /*** DEMO only ***/
 
     html {
-
         font-size: 62.5%;
-
     }
 
-    html, body {
-
-        margin: 0; padding: 0; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; color: #ddd;
-        background-color: #292b2b; text-align: center;
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+        color: #ddd;
+        background-color: #292b2b;
+        text-align: center;
     }
 
     header {
-
-        margin: 50px auto 10px auto; text-align: center;
-
+        margin: 50px auto 10px auto;
+        text-align: center;
     }
 
     h1 {
-
-        font-size: 17px; margin: 5px auto 15px; font-weight: normal;
-
+        font-size: 17px;
+        margin: 5px auto 15px;
+        font-weight: normal;
     }
 
     h2 {
-
-        font-size: 100px; line-height: 1; margin: 0 auto;
-        font-family: 'Yesteryear', cursive, serif; color: #e8d639;
+        font-size: 100px;
+        line-height: 1;
+        margin: 0 auto;
+        font-family: 'Yesteryear', cursive, serif;
+        color: #e8d639;
         text-shadow: 3px 5px 2px #1f1f1f;
-
     }
 
     header p {
-
-        font-size: 14px; margin: 18px 20px 0 20px; line-height: 1.5; color: #848484;
-        border-bottom: 1px solid #464646; display: inline-block;
-
+        font-size: 14px;
+        margin: 18px 20px 0 20px;
+        line-height: 1.5;
+        color: #848484;
+        border-bottom: 1px solid #464646;
+        display: inline-block;
     }
 
     main {
-
-        position: absolute; left: 50%; top: 50%; width: 470px; height: 60px;
-        margin: -30px 0 0 -235px; border-radius: 4px;
-
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 470px;
+        height: 60px;
+        margin: -30px 0 0 -235px;
+        border-radius: 4px;
     }
 
     .form {
-
-        box-shadow: 2px 4px 2px #1f1f1f; position: relative; border-radius: 4px;
-
+        box-shadow: 2px 4px 2px #1f1f1f;
+        position: relative;
+        border-radius: 4px;
     }
 
-    .jCaptchaText {
-
-        position: absolute; top: -25px; left: 15px;
-
+    .jCaptchaCanvas {
+        position: absolute;
+        top: -25px;
+        left: 15px;
     }
 
     .jCaptcha {
-
-        padding: 20px 25px 20px 20px; font-size: 15px; width: 320px; height: 60px; box-sizing: border-box; outline: none;
-        border-radius: 4px 0 0 4px; border: none; vertical-align: middle; transition: all 150ms linear; box-shadow: 0 0 8px #4e4706;
-
+        padding: 20px 25px 20px 20px;
+        font-size: 15px;
+        width: 320px;
+        height: 60px;
+        box-sizing: border-box;
+        outline: none;
+        border-radius: 4px 0 0 4px;
+        border: none;
+        vertical-align: middle;
+        transition: all 150ms linear;
+        box-shadow: 0 0 8px #4e4706;
     }
 
     .jCaptcha:focus,
-    .jCaptcha:focus ~ .button {
-
+    .jCaptcha:focus~.button {
         box-shadow: 0 0 8px #a79816;
-
     }
 
     .jCaptcha.error,
-    .jCaptcha.error ~ .button {
-
+    .jCaptcha.error~.button {
         box-shadow: 0 0 8px #c5391a;
-
     }
 
-    .jCaptcha.error ~ .button {
-
-        background: #c5391a; color: #fff;
-
+    .jCaptcha.error~.button {
+        background: #c5391a;
+        color: #fff;
     }
 
     .jCaptcha.success,
-    .jCaptcha.success ~ .button {
-
+    .jCaptcha.success~.button {
         box-shadow: 0 0 8px #93a023;
-
     }
 
-    .jCaptcha.success ~ .button {
+    .jCaptcha.success~.button {
+        background: #b1c317;
+        color: #fff;
+    }
 
-        background: #b1c317; color: #fff;
+    .jCaptcha.disabled {
+        background-color: #eff3f6;
+        box-shadow: 0 0 8px #4e4706 !important;
+    }
 
+    .jCaptcha.disabled~.button {
+        background: #e2e2e2;
+        color: #7c7c7c;
+        box-shadow: 0 0 8px #656565;
+        cursor: not-allowed;
     }
 
     .button {
-
-        padding: 21px 0; width: 150px; height: 60px; vertical-align: middle; box-sizing: border-box;
-        font-size: 12px; font-weight: bold; background: #e8d639; cursor: pointer; border: none; color: #292b2b; line-height: 1; text-transform: uppercase; border-radius: 0 4px 4px 0; margin-left: -4px; letter-spacing: 0.5px; transition: all 150ms linear; box-shadow: 0 0 8px #4e4706; outline: none;
-
+        padding: 21px 0;
+        width: 150px;
+        height: 60px;
+        vertical-align: middle;
+        box-sizing: border-box;
+        font-size: 12px;
+        font-weight: bold;
+        background: #e8d639;
+        cursor: pointer;
+        border: none;
+        color: #292b2b;
+        line-height: 1;
+        text-transform: uppercase;
+        border-radius: 0 4px 4px 0;
+        margin-left: -4px;
+        letter-spacing: 0.5px;
+        transition: all 150ms linear;
+        box-shadow: 0 0 8px #4e4706;
+        outline: none;
     }
 
     .button:hover,
     .button:focus {
-
         background: #e8d20b;
-
     }
 
     .codeBtn {
-
-        display: inline-block; margin: 15px auto 0 auto; color: #ddd; font-size: 14px; padding: 5px; cursor: pointer;
-
+        display: inline-block;
+        margin: 15px auto 0 auto;
+        color: #ddd;
+        font-size: 15px;
+        padding: 12px;
+        text-decoration: underline;
+        cursor: pointer;
     }
 
     .btnWrap {
-
-        bottom: 50px; left: 0; right: 0; position: absolute;
-
+        bottom: 50px;
+        left: 0;
+        right: 0;
+        position: absolute;
     }
 
     .jPopup .content {
-
-        max-height: 82%; margin: 40px 10px 0 10px;
-        text-align: center; color: #292b2b; font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; overflow: auto;
-
+        max-height: 82%;
+        margin: 40px 10px 0 10px;
+        text-align: center;
+        color: #292b2b;
+        font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+        overflow: auto;
     }
 
     .jPopup .content strong {
-
-        font-size: 30px; display: block; padding-bottom: 10px;
-
+        font-size: 30px;
+        display: block;
+        padding-bottom: 10px;
     }
 
     .jPopup .content p {
-
-        font-size: 16px; text-align: left; display: inline-block; padding-bottom: 50px;
+        font-size: 16px;
+        text-align: left;
+        display: inline-block;
+        padding-bottom: 50px;
         white-space: nowrap;
-
     }
 
     .jPopup .content span {
-
-        font-size: 16px; text-align: left; display: block; padding-bottom: 5px;
-        color: #999; font-style: italic;
-
+        font-size: 16px;
+        text-align: left;
+        display: block;
+        padding-bottom: 5px;
+        color: #999;
+        font-style: italic;
     }
 
     @media screen and (max-width: 540px) {
 
         h2 {
-
             font-size: 60px;
-
         }
 
         header p {
-
             padding-bottom: 7px;
-
         }
 
         main {
-
-            position: static; left: auto; top: auto; width: 280px; margin: 100px auto 100px auto; height: auto;
-
+            position: static;
+            left: auto;
+            top: auto;
+            width: 280px;
+            margin: 100px auto 100px auto;
+            height: auto;
         }
 
         .jCaptcha {
-
-            width: 180px; height: 50px; padding: 15px 20px 15px 15px;
-
+            width: 180px;
+            height: 50px;
+            padding: 15px 20px 15px 15px;
         }
 
         .btnWrap {
-
-            position: static; left: auto; right: auto; bottom: auto;
+            position: static;
+            left: auto;
+            right: auto;
+            bottom: auto;
             padding-bottom: 50px;
-
         }
 
         .button {
-
-            width: 100px; height: 50px; padding: 16px 0;
-
+            width: 100px;
+            height: 50px;
+            padding: 16px 0;
         }
 
-        .jPopup .content p {
-
-            font-size: 15px;
-
+        .jPopup .content p,
+        .jPopup .content span {
+            font-size: 13px;
         }
-
     }
-
 </style>
 
 <body>
 
-<header>
+    <header>
 
-    <h1>JavaScript Captcha</h1>
+        <h1>JavaScript Captcha</h1>
 
-    <h2>jCaptcha</h2>
+        <h2>jCaptcha</h2>
 
-    <p>Tiny captcha component written in pure JavaScript with no dependencies based on canvas element</p>
+        <p>Tiny captcha component written in pure JavaScript with no dependencies based on canvas element</p>
 
-</header>
+    </header>
 
-<main>
+    <main>
 
-    <form class="form" action="">
+        <form class="form" action="">
 
-        <input class="jCaptcha" type="text" placeholder="Type in result please">
-        <button class="button" type="submit">Submit</button>
+            <input class="jCaptcha" type="text" placeholder="Type in result please">
+            <button class="button" type="submit">Submit</button>
 
-    </form>
+        </form>
 
-    <a class="codeBtn" role="button">View demo source code</a>
+        <a class="codeBtn" role="button">View demo source code</a>
 
-</main>
+    </main>
 
-<footer class="btnWrap">
-    <a class="github-button" href="https://github.com/robiveli/js-captcha" data-size="large" aria-label="View on GitHub">View on GitHub</a>
-    <a class="github-button" href="https://github.com/robiveli/js-captcha/archive/master.zip" data-icon="octicon-cloud-download" data-size="large" egaaria-label="Download robiveli/jCaptcha on GitHub">Download</a>
-</footer>
+    <footer class="btnWrap">
+        <a class="github-button" href="https://github.com/robiveli/js-captcha" data-size="large"
+            aria-label="View on GitHub">View on GitHub</a>
+        <a class="github-button" href="https://github.com/robiveli/js-captcha/archive/master.zip"
+            data-icon="octicon-cloud-download" data-size="large"
+            egaaria-label="Download robiveli/jCaptcha on GitHub">Download</a>
+    </footer>
 
-<script src="js/index.min.js"></script>
+    <script src="js/index.min.js"></script>
 
-<!-- for demo purposes only -->
-<script src="https://www.rvdizajn.com/jpopup/js/jPopup.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-<!-- for demo purposes only -->
+    <!-- for demo purposes only -->
+    <script src="https://www.rvdizajn.com/jpopup/js/jPopup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+    <!-- for demo purposes only -->
 
-<script>
+    <script>
 
-    // captcha initial setup
-    var myCaptcha = new jCaptcha({
+        // optionally, set maximum number of captcha validation on event:
+        const maxNumberOfTries = 5;
 
-        // set callback function
-        callback: function(response, $captchaInputElement) {
+        // captcha initial setup
+        var myCaptcha = new jCaptcha({
+            el: '.jCaptcha',
+            canvasClass: 'jCaptchaCanvas',
+            canvasStyle: {
+                // properties for captcha stylings
+                width: 100,
+                height: 15,
+                textBaseline: 'top',
+                font: '15px Arial',
+                textAlign: 'left',
+                fillStyle: '#ddd'
+            },
 
-            if (response == 'success') {
+            // set callback function
+            callback: function (response, $captchaInputElement, numberOfTries) {
 
-                $captchaInputElement[0].classList.remove('error');
-                $captchaInputElement[0].classList.add('success');
-                $captchaInputElement[0].placeholder = 'Submit successful!';
+                if (maxNumberOfTries === numberOfTries) {
+                    // maximum attempts reached, so do something
+                    // e.g. disable the form:
+                    document.querySelector('form').removeEventListener('submit', formSubmit);
+                    $captchaInputElement.classList.add('disabled');
+                    $captchaInputElement.placeholder = 'Maximum attempts reached!';
+                    $captchaInputElement.setAttribute('disabled', 'true');
+                    document.querySelector('button').setAttribute('disabled', 'true');
+
+                    return;
+                }
+
+                if (response == 'success') {
+
+                    $captchaInputElement.classList.remove('error');
+                    $captchaInputElement.classList.add('success');
+                    $captchaInputElement.placeholder = 'Submit successful!';
+
+                    // now continue with form submit
+
+                }
+
+                if (response == 'error') {
+
+                    $captchaInputElement.classList.remove('success');
+                    $captchaInputElement.classList.add('error');
+                    $captchaInputElement.placeholder = 'Please try again!';
+
+                }
 
             }
 
-            if (response == 'error') {
+        });
 
-                $captchaInputElement[0].classList.remove('success');
-                $captchaInputElement[0].classList.add('error');
-                $captchaInputElement[0].placeholder = 'Please try again!';
+        function formSubmit(e) {
 
-            }
+            e.preventDefault();
 
-        }
+            // myCaptcha validate
+            myCaptcha.validate();
 
-    });
+        };
 
-    // captcha validate on form submit
-    document.querySelector('form').addEventListener('submit', function(e) {
+        // validate captcha on form submit event
+        document.querySelector('form').addEventListener('submit', formSubmit);
 
-        e.preventDefault();
+        // popup setup
+        document.querySelector('.codeBtn').addEventListener('click', function () {
 
-        // captcha validate
-        myCaptcha.validate();
+            var jPopupDemo = new jPopup({
 
-    });
-
-    // popup setup
-    document.querySelector('.codeBtn').addEventListener('click', function() {
-
-        var jPopupDemo = new jPopup({
-
-            content: '<strong>HTML</strong>\
+                content: '<strong>HTML</strong>\
                     <p>\
                         &lt;form class="form" action=""&gt;\
                         <br>\
@@ -306,11 +377,58 @@
                         &lt;/form&gt;\
                     </p>\
                     <strong>JavaScript</strong>\
-                    <p><span>// captcha initial setup</span>\
+                    <p>\
+                    <span>// optionally, set maximum number of captcha validation on event:</span>\
+                    const maxNumberOfTries = 5;\
+                    <br>\ <br>\
+                    <span>// captcha initial setup</span>\
                     var myCaptcha = new jCaptcha({\
                     <br><br>\
+                        &nbsp;&nbsp;&nbsp;&nbsp;el: ".jCaptcha",\
+                        <br>\
+                        &nbsp;&nbsp;&nbsp;&nbsp;canvas: {\
+                        <br>\
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class: "jCaptchaCanvas",\
+                        <br>\
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style: {\
+                        <br>\
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// properties for captcha stylings:</span>\
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 100,\
+                        <br>\
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height: 15,\
+                        <br>\
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textBaseline: "top",\
+                        <br>\
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font: "15px Arial",\
+                        <br>\
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textAlign: "left",\
+                        <br>\
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fillStyle: "#ddd"\
+                        <br>\
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\
+                        <br>\
+                        &nbsp;&nbsp;&nbsp;&nbsp;},\
+                        <br>\
                         <span>&nbsp;&nbsp;&nbsp;&nbsp;// set callback function</span>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;callback: function(response, $captchaInputElement) {\
+                        &nbsp;&nbsp;&nbsp;&nbsp;callback: function(response, $captchaInputElement, numberOfTries) {\
+                        <br><br>\
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (maxNumberOfTries === numberOfTries) {\
+                            <br><br>\
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// maximum attempts reached, so do something</span>\
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// e.g. disable the form:</span>\
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.querySelector("form").removeEventListener("submit", formSubmit);\
+                            <br>\
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$captchaInputElement.classList.add("disabled");\
+                            <br>\
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$captchaInputElement.placeholder = "Maximum attempts reached!"";\
+                            <br>\
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$captchaInputElement.setAttribute("disabled", "true");\
+                            <br>\
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.querySelector("button").setAttribute("disabled", "true");\
+                            <br><br>\
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;\
+                            <br>\
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\
                         <br><br>\
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (response == \'success\') {\
                         <br><br>\
@@ -320,6 +438,8 @@
                         <br>\
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$captchaInputElement[0].placeholder = \'Submit successful!\';\
                         <br><br>\
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// continue with form submit</span>\
+                        <br>\
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\
                         <br><br>\
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (response == \'error\') {\
@@ -329,29 +449,33 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$captchaInputElement[0].classList.add(\'error\');\
                         <br>\
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$captchaInputElement[0].placeholder = \'Please try again!\';\
-                        <br><br>\
+                        <br>\
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\
-                    <br><br>\
+                    <br>\
                     &nbsp;&nbsp;&nbsp;&nbsp;}\
                     <br><br>\
                     });\
                     <br><br>\
-                    <span>// captcha validate on form submit</span>\
-                    document.querySelector(\'form\').addEventListener(\'submit\', function(e) {\
+                    <span>// validate captcha on form submit event</span>\
+                    function formSubmit(e) {\
+                        <br>\
+                        &nbsp;&nbsp;&nbsp;&nbsp;e.preventDefault();\
+                        <br><br>\
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;// myCaptcha validate</span>\
+                        &nbsp;&nbsp;&nbsp;&nbsp;myCaptcha.validate();\
+                        <br>\
+                    };\
+                    <br>\<br>\
+                    document.querySelector("form").addEventListener("submit", formSubmit);\
                     <br><br>\
-                    &nbsp;&nbsp;&nbsp;&nbsp;e.preventDefault();\
-                    <br><br>\
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;// captcha validate</span>\
-                    &nbsp;&nbsp;&nbsp;&nbsp;myCaptcha.validate();\
-                    <br><br>\
-                    });\
                     </p>'
+
+            });
 
         });
 
-    });
-
-</script>
+    </script>
 
 </body>
+
 </html>

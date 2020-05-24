@@ -32,13 +32,17 @@
         "grunt-contrib-uglify": "^4.0.1",
         "grunt-contrib-watch": "^1.1.0",
         "grunt-umd": "^3.0.0",
+        "jest": "^26.0.1",
+        "jest-canvas-mock": "^2.2.0",
         "load-grunt-tasks": "^5.1.0"
     },
     "scripts": {
-        "preinstall": "npm install -g npm-check-updates",
+        "preinstall": "npm install -g np npm-check-updates",
         "watch": "grunt watch",
         "build": "grunt build && ncu",
         "dependency-check": "ncu",
-        "dependency-update": "ncu -u && npm install && npm audit fix"
+        "dependency-update": "ncu -u && npm install && npm audit fix",
+        "test": "jest --coverage",
+        "publish": "npm run test && np --no-yarn"
     }
 }

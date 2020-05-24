@@ -30,70 +30,64 @@
   */
 
 
-  var setCaptcha = function setCaptcha($captcha, options, reset) {
-    if (!reset) {
-      $captcha[0].insertAdjacentHTML('beforebegin', '<canvas class="jCaptchaText"></canvas>');
+  var setCaptcha = function setCaptcha($el, options, shouldReset) {
+    if (!shouldReset) {
+      $el.insertAdjacentHTML('beforebegin', "<canvas class=\"".concat(options.canvasClass, "\"\n                    width=\"").concat(options.canvasStyle.width, "\" height=\"").concat(options.canvasStyle.height, "\">\n                </canvas>\n            "));
+      this.$captchaEl = document.querySelector(".".concat(options.canvasClass));
+      this.$captchaTextContext = this.$captchaEl.getContext('2d');
+      this.$captchaTextContext = Object.assign(this.$captchaTextContext, options.canvasStyle);
     }
 
-    this.$captchaText = this.$captchaText || document.getElementsByClassName('jCaptchaText');
-    this.$jCaptchaTextContext = this.$jCaptchaTextContext || this.$captchaText[0].getContext('2d');
-    this.$captchaText[0].width = options.canvasWidth;
-    this.$captchaText[0].height = options.canvasHeight;
-    this.$jCaptchaTextContext.textBaseline = 'top';
-    this.$jCaptchaTextContext.font = '' + options.canvasFontSize + ' ' + options.canvasFontFamily + '';
-    this.$jCaptchaTextContext.textAlign = 'left';
-    this.$jCaptchaTextContext.fillStyle = options.canvasFillStyle;
-    this.$jCaptchaTextContext.fillText(num1 + ' + ' + num2 + ' ' + options.requiredValue + '', 0, 0);
+    this.$captchaTextContext.clearRect(0, 0, options.canvasStyle.width, options.canvasStyle.height);
+    this.$captchaTextContext.fillText("".concat(num1, " + ").concat(num2, " ").concat(options.requiredValue), 0, 0);
   };
   /**
    * @param {Object}
   */
 
 
-  var defaults = {
-    el: 'jCaptcha',
-    requiredValue: '*',
-    resetOnError: true,
-    focusOnError: true,
-    clearOnSubmit: true,
-    canvasWidth: 50,
-    canvasHeight: 15,
-    canvasFontSize: '15px',
-    canvasFontFamily: 'Arial',
-    canvasFillStyle: '#ddd',
-    callback: null
-  };
-  var sumNum, num1, num2;
-
   var jCaptcha = function jCaptcha() {
     var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    jCaptcha.prototype.options = Object.assign({}, defaults, options);
+    this.options = Object.assign({}, {
+      el: '.jCaptcha',
+      canvasClass: 'jCaptchaCanvas',
+      requiredValue: '*',
+      resetOnError: true,
+      focusOnError: true,
+      clearOnSubmit: true,
+      callback: null,
+      canvasStyle: {}
+    }, options);
 
-    jCaptcha.prototype._init();
+    this._init();
   };
 
+  var sumNum, num1, num2;
+  var numberOfTries = 0;
+  ;
   jCaptcha.prototype = {
     _init: function _init() {
-      this.$captchaInput = document.getElementsByClassName(this.options.el);
+      this.$el = document.querySelector(this.options.el);
       generateRandomNum();
-      setCaptcha.call(this, this.$captchaInput, this.options, false);
+      setCaptcha.call(this, this.$el, this.options);
     },
     validate: function validate() {
+      numberOfTries++;
       this.callbackReceived = this.callbackReceived || typeof this.options.callback == 'function';
 
-      if (this.$captchaInput[0].value != sumNum) {
-        this.callbackReceived && this.options.callback('error', this.$captchaInput);
+      if (this.$el.value != sumNum) {
+        this.callbackReceived && this.options.callback('error', this.$el, numberOfTries);
         this.options.resetOnError === true && this.reset();
-        this.options.focusOnError === true && this.$captchaInput[0].focus();
-        this.options.clearOnSubmit === true && (this.$captchaInput[0].value = '');
+        this.options.focusOnError === true && this.$el.focus();
+        this.options.clearOnSubmit === true && (this.$el.value = '');
       } else {
-        this.callbackReceived && this.options.callback('success', this.$captchaInput);
-        this.options.clearOnSubmit === true && (this.$captchaInput[0].value = '');
+        this.callbackReceived && this.options.callback('success', this.$el, numberOfTries);
+        this.options.clearOnSubmit === true && (this.$el.value = '');
       }
     },
     reset: function reset() {
       generateRandomNum();
-      setCaptcha.call(this, this.$captchaInput, this.options, true);
+      setCaptcha.call(this, this.$el, this.options, true);
     }
   };
 }
