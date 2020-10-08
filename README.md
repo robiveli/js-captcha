@@ -9,41 +9,39 @@ Demo can be seen [here](https://www.rvdizajn.com/js-captcha/).
 
 ### Install ###
 
-```
+```console
 npm install js-captcha --save
 ```
 
 ### Usage ###
 
 Just include required JavaScript:
-```
+```html
 <script src="jCaptcha.js"></script>
 ```
 or
-```
+```js
 import jCaptcha from 'jCaptcha';
 ```
 Define main captcha input element in HTML:
-```
+```html
 <input class="jCaptcha" type="text" placeholder="Type in result please">
 ```
 
 Initialize it:
-```
+```html
 <script>
-    var myCaptcha = new jCaptcha({
+    let myCaptcha = new jCaptcha({
         el: '.jCaptcha',
-        canvas: {
-            class: 'jCaptchaCanvas',
-            style: {
-                // required properties for captcha stylings:
-                width: 100,
-                height: 15,
-                textBaseline: 'top',
-                font: '15px Arial',
-                textAlign: 'left',
-                fillStyle: '#ddd'
-            }
+        canvasClass: 'jCaptchaCanvas',
+        canvasStyle: {
+            // required properties for captcha stylings:
+            width: 100,
+            height: 15,
+            textBaseline: 'top',
+            font: '15px Arial',
+            textAlign: 'left',
+            fillStyle: '#ddd'
         },
         // set callback function for success and error messages:
         callback: ( response, $captchaInputElement, numberOfTries ) => {
@@ -63,7 +61,7 @@ Initialize it:
 ```
 
 And then call `validate()` method when required (e.g. on form submit event):
-```
+```html
 <script>
     myCaptcha.validate();
 </script>
