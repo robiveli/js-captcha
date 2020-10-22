@@ -5,7 +5,7 @@ Simple numeric captcha rendered within basic [canvas element](https://developer.
 
 ### Demo ###
 
-Demo can be seen [here](robiveli.github.io/js-captcha/).
+Demo can be seen [here](https://robiveli.github.io/js-captcha/).
 
 ### Install ###
 
