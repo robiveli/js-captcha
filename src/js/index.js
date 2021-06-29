@@ -25,7 +25,7 @@
                 </canvas>
             `);
 
-            this.$captchaEl = document.querySelector(`.${options.canvasClass}`);
+            this.$captchaEl = $el.previousElementSibling;
             this.$captchaTextContext = this.$captchaEl.getContext('2d');
 
             this.$captchaTextContext = Object.assign(this.$captchaTextContext, options.canvasStyle);
