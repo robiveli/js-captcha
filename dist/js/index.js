@@ -33,7 +33,7 @@
   var setCaptcha = function setCaptcha($el, options, shouldReset) {
     if (!shouldReset) {
       $el.insertAdjacentHTML('beforebegin', "<canvas class=\"".concat(options.canvasClass, "\"\n                    width=\"").concat(options.canvasStyle.width, "\" height=\"").concat(options.canvasStyle.height, "\">\n                </canvas>\n            "));
-      this.$captchaEl = document.querySelector(".".concat(options.canvasClass));
+      this.$captchaEl = $el.previousElementSibling;
       this.$captchaTextContext = this.$captchaEl.getContext('2d');
       this.$captchaTextContext = Object.assign(this.$captchaTextContext, options.canvasStyle);
     }
