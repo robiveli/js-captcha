@@ -1,15 +1,3 @@
 {
-    "presets": [
-        [
-            "@babel/preset-env",
-            {
-                "targets": {
-                    "browsers": [
-                        "last 5 versions",
-                        "Explorer >= 11"
-                    ]
-                }
-            }
-        ]
-    ]
+    "presets": [["@babel/preset-env"]]
 }

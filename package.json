@@ -2,7 +2,7 @@
     "name": "js-captcha",
     "title": "JavaScript Captcha",
     "description": "Simple captcha component written in pure JavaScript with no dependencies based on canvas element",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "license": "MIT",
     "author": {
         "name": "Robert Velickovski",
@@ -25,24 +25,21 @@
         "@babel/core": "^7.9.6",
         "@babel/preset-env": "^7.9.6",
         "babel-core": "^6.26.3",
-        "babel-preset-env": "^1.7.0",
+        "babel-preset-env": "^0.0.0",
         "grunt": "^1.1.0",
         "grunt-babel": "^8.0.0",
-        "grunt-contrib-htmlmin": "^3.1.0",
-        "grunt-contrib-uglify": "^4.0.1",
+        "grunt-contrib-uglify": "^5.2.2",
         "grunt-contrib-watch": "^1.1.0",
+        "grunt-minify-html": "^3.0.0",
         "grunt-umd": "^3.0.0",
-        "jest": "^26.0.1",
+        "jest": "^30.0.2",
         "jest-canvas-mock": "^2.2.0",
+        "jest-environment-jsdom": "^30.0.2",
         "load-grunt-tasks": "^5.1.0"
     },
     "scripts": {
-        "preinstall": "npm install -g np npm-check-updates",
-        "watch": "grunt watch",
-        "build": "grunt build && ncu",
-        "dependency-check": "ncu",
-        "dependency-update": "ncu -u && npm install && npm audit fix",
-        "test": "jest --coverage",
-        "publish": "npm run test && np --no-yarn"
+        "dev": "grunt watch",
+        "build": "grunt build",
+        "test": "jest --coverage"
     }
 }
